@@ -44,7 +44,6 @@ data/
 *.csv
 
 # Config / secrets
-config.yaml
 *.env
 
 # IDE
