@@ -1,0 +1,9 @@
+model:
+  path: "artifacts/model_v1.0.pkl"
+
+app:
+  host: "0.0.0.0"
+  port: 80
+
+prediction:
+  round_digits: 1
