@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AI Prediction App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-left: 40px; /* Increased left margin */
+        }
+        h1, h3 {
+            text-align: center;
+            color: #333;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            width: 100%;
+            max-width: 400px; /* Reduced width of input boxes */
+            padding: 10px;
+            margin: 5px 0; /* Reduced space between input boxes */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-control:focus {
+            border-color: #66afe9;
+            outline: none;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 15px; /* Reduced space between input groups */
+        }
+        .result {
+            background-color: #e9f7fc;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 600px) {
+            .container {
+                margin-left: 10px; /* Less margin on smaller screens */
+                padding: 15px;
+            }
+            .form-control {
+                max-width: 100%; /* Allow inputs to fill the available width on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the AI Prediction App</h1>
+
+        <!-- Prediction Form -->
+        <form action="{{ url_for('predict_user_data') }}" method="POST">
+            <!-- Gender Selection -->
+            <div class="form-group">
+                <label class="form-label" for="gender">Gender</label>
+                <div>
+                    <input type="radio" id="female" name="gender" value="female" required> Female
+                    <input type="radio" id="male" name="gender" value="male"> Male
+                </div>
+            </div>
+
+            <!-- Ethnicity Selection -->
+            <div class="form-group">
+                <label class="form-label" for="ethnicity">Race or Ethnicity</label>
+                <select class="form-control" name="ethnicity" required>
+                    <option value="" disabled selected>Select Ethnicity</option>
+                    <option value="group A">Group A</option>
+                    <option value="group B">Group B</option>
+                    <option value="group C">Group C</option>
+                    <option value="group D">Group D</option>
+                    <option value="group E">Group E</option>
+                </select>
+            </div>
+
+            <!-- Parental Education Level -->
+            <div class="form-group">
+                <label class="form-label" for="parental_level_of_education">Parental Level of Education</label>
+                <select class="form-control" name="parental_level_of_education" required>
+                    <option value="" disabled selected>Select Parent Education</option>
+                    <option value="associate's degree">Associate's Degree</option>
+                    <option value="bachelor's degree">Bachelor's Degree</option>
+                    <option value="high school">High School</option>
+                    <option value="master's degree">Master's Degree</option>
+                    <option value="some college">Some College</option>
+                    <option value="some high school">Some High School</option>
+                </select>
+            </div>
+
+            <!-- Lunch Type -->
+            <div class="form-group">
+                <label class="form-label" for="lunch">Lunch Type</label>
+                <select class="form-control" name="lunch" required>
+                    <option value="" disabled selected>Select Lunch Type</option>
+                    <option value="free/reduced">Free/Reduced</option>
+                    <option value="standard">Standard</option>
+                </select>
+            </div>
+
+            <!-- Test Preparation Course -->
+            <div class="form-group">
+                <label class="form-label" for="test_preparation_course">Test Preparation Course</label>
+                <select class="form-control" name="test_preparation_course" required>
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="none">None</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <!-- Reading Score -->
+            <div class="form-group">
+                <label class="form-label" for="reading_score">Reading Score (out of 100)</label>
+                <input class="form-control" type="number" name="reading_score" min="0" max="100" placeholder="Enter Reading Score" required />
+            </div>
+
+            <!-- Writing Score -->
+            <div class="form-group">
+                <label class="form-label" for="writing_score">Writing Score (out of 100)</label>
+                <input class="form-control" type="number" name="writing_score" min="0" max="100" placeholder="Enter Writing Score" required />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input class="btn" type="submit" value="Predict My Score" />
+            </div>
+        </form>
+
+        <!-- Display Prediction Result -->
+        {% if results %}
+            <div class="result">
+                <h3>Your AI Predicted Math Score: {{ results }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
