@@ -36,12 +36,8 @@ nosetests.xml
 logs/
 *.log
 
-# ML Artifacts and models
-Artifacts/
+# catboost info
 catboost_info/
-data/
-*.pkl
-*.csv
 
 # Config / secrets
 *.env
