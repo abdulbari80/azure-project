@@ -1,0 +1,29 @@
+# Ignore unnecessary files for Docker build
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+*.git
+.gitignore
+
+# Logs and artifacts
+logs/
+Artifacts/
+catboost_info/
+data/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.log
+*.tmp
