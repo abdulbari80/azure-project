@@ -1,0 +1,23 @@
+# === Core ML & Data ===
+numpy>=1.26.0
+pandas>=2.1.0
+scikit-learn>=1.5.0
+catboost>=1.2.5
+xgboost>=2.0.0
+dill>=0.3.8
+
+# === Visualization (optional for local dev or diagnostics) ===
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# === Web Framework ===
+Flask>=3.0.3
+
+# === Testing & CI/CD ===
+pytest>=8.0.0   # for running tests with unittest or pytest
+pytest-cov>=4.0.0   # for measuring test coverage
+PyYAML>=6.0     # needed since you’re using config.yaml
+
+# === Azure Integration ===
+azure-cli>=2.63.0   # only if you plan to build/push from Docker image or CI/CD
+-e .
