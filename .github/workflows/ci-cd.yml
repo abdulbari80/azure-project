@@ -42,5 +42,5 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         az acr build \
-          --registry <yourACRname> \
-          --image azureproject:latest .
+          --registry ${{ secrets.ACR_NAME }} \
+          --image azure-ml-project:latest .
