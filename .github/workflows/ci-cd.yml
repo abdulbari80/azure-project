@@ -38,9 +38,11 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+  
+    - name: Build Docker image locally
+      run: docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/azure-ml-project:latest .
 
-    - name: Build and Push Docker Image
+    - name: Push image to Azure Container Registry
       run: |
-        az acr build \
-          --registry ${{ secrets.ACR_NAME }} \
-          --image azure-ml-project:latest .
+        az acr login --name ${{ secrets.ACR_NAME }}
+        docker push ${{ secrets.ACR_NAME }}.azurecr.io/azure-ml-project:latest
