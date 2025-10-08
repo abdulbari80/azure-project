@@ -24,7 +24,7 @@ class DataIngestion:
         logging.info("Data Ingestion method starts")
         try:
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
-            df = pd.read_csv('data\student.csv')
+            df = pd.read_csv(os.path.join('data', 'student.csv'))
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
             train_set, test_set = train_test_split(df, test_size=self.test_size, random_state=42)
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
